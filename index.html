@@ -5,171 +5,394 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ashley Shirin G | Python Full Stack Developer</title>
 <meta name="description" content="Ashley Shirin G, Python Full Stack Developer in Bangalore. React, FastAPI, Django, MySQL. Creator of LifeXash.">
+<meta property="og:title" content="Ashley Shirin G | Python Full Stack Developer">
+<meta property="og:description" content="React, FastAPI, Django and MySQL developer. Creator of LifeXash.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%237c3aed'/><text x='50%' y='56%' font-family='Arial' font-weight='700' font-size='30' fill='white' text-anchor='middle' dominant-baseline='middle'>AS</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fafaf9; --surface: #ffffff; --text: #1c1917; --muted: #57534e;
-    --border: #e7e5e4; --accent: #0f766e; --accent-soft: #ccfbf1; --chip: #f5f5f4;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0c0a09; --surface: #1c1917; --text: #f5f5f4; --muted: #a8a29e;
-      --border: #292524; --accent: #2dd4bf; --accent-soft: #134e4a; --chip: #292524;
-    }
+    --bg: #0b0b14; --bg2: #11111d; --card: rgba(255,255,255,.04); --card-border: rgba(255,255,255,.09);
+    --text: #ececf3; --muted: #a1a1b5; --violet: #8b5cf6; --cyan: #22d3ee; --pink: #f472b6;
+    --grad: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
-  nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 10; }
-  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
-  nav .links { display: flex; gap: 18px; font-size: 14px; }
-  nav .links a { color: var(--muted); }
-  @media (max-width: 560px) { nav .links { display: none; } }
-  header { padding: 72px 0 48px; }
-  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; }
-  .role { font-size: 20px; color: var(--accent); font-weight: 600; margin-top: 8px; }
-  .intro { color: var(--muted); font-size: 17px; margin-top: 16px; max-width: 640px; }
-  .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .btn { padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px; border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-  .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  .btn:hover { text-decoration: none; opacity: .9; }
-  section { padding: 40px 0; border-top: 1px solid var(--border); }
-  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 20px; }
-  h3 { font-size: 20px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
-  .card p, .card li { color: var(--muted); }
-  .card ul { padding-left: 20px; margin-top: 12px; }
-  .card li { margin-bottom: 6px; }
-  .shot { width: 100%; border-radius: 8px; border: 1px solid var(--border); margin: 16px 0; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .chip { background: var(--chip); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--text); }
-  .featured { border-color: var(--accent); }
-  .tag { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; margin-bottom: 8px; }
-  .row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; }
-  .when { color: var(--muted); font-size: 14px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-  .grid .card { margin: 0; }
-  .skills dt { font-weight: 600; margin-top: 12px; }
-  .skills dd { color: var(--muted); }
-  footer { padding: 40px 0 56px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* background glow */
+  .blob { position: fixed; border-radius: 50%; filter: blur(110px); opacity: .35; z-index: -1; animation: float 18s ease-in-out infinite; }
+  .blob.b1 { width: 480px; height: 480px; background: #7c3aed; top: -140px; left: -120px; }
+  .blob.b2 { width: 420px; height: 420px; background: #0891b2; top: 40%; right: -160px; animation-delay: -6s; }
+  .blob.b3 { width: 360px; height: 360px; background: #db2777; bottom: -160px; left: 30%; opacity: .2; animation-delay: -12s; }
+  @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
+  .grid-bg { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%); }
+
+  /* nav */
+  nav { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 50; width: calc(100% - 32px); max-width: 1040px; }
+  nav .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px 10px 18px; border-radius: 16px; background: rgba(17,17,29,.7); backdrop-filter: blur(14px); border: 1px solid var(--card-border); }
+  .logo { font-weight: 800; font-size: 18px; letter-spacing: -.02em; }
+  .logo span { color: var(--violet); }
+  nav .links { display: flex; gap: 4px; }
+  nav .links a { padding: 7px 14px; border-radius: 10px; font-size: 14px; color: var(--muted); transition: .2s; }
+  nav .links a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+  nav .cta { padding: 8px 16px; border-radius: 10px; background: var(--grad); color: #fff; font-weight: 600; font-size: 14px; }
+  @media (max-width: 760px) { nav .links { display: none; } }
+
+  /* hero */
+  .hero { min-height: min(100vh, 900px); display: flex; align-items: center; padding: 120px 0 60px; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
+  .hero-grid > *, .feature > *, .about > *, .skills > *, .proj-grid > * { min-width: 0; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.25); color: var(--cyan); font-size: 13px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.7); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
+  h1 { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; letter-spacing: -.035em; font-weight: 800; margin: 22px 0 14px; }
+  .typed { font-size: clamp(20px, 3vw, 26px); font-weight: 600; color: var(--muted); min-height: 1.5em; }
+  .typed .word { color: var(--text); }
+  .caret { display: inline-block; width: 3px; height: 1.05em; background: var(--violet); margin-left: 3px; vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .intro { color: var(--muted); font-size: 17px; margin-top: 18px; max-width: 560px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 15px; border: 1px solid var(--card-border); background: var(--card); transition: transform .2s, border-color .2s, box-shadow .2s; }
+  .btn:hover { transform: translateY(-2px); border-color: rgba(139,92,246,.6); }
+  .btn.primary { background: var(--grad); border: none; color: #fff; box-shadow: 0 10px 30px -10px rgba(139,92,246,.7); }
+  .btn svg { width: 18px; height: 18px; }
+  .socials { display: flex; gap: 10px; margin-top: 26px; }
+  .socials a { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--card); border: 1px solid var(--card-border); color: var(--muted); transition: .2s; }
+  .socials a:hover { color: #fff; border-color: var(--violet); transform: translateY(-2px); }
+  .socials svg { width: 19px; height: 19px; }
+
+  /* code card */
+  .code-card { border-radius: 18px; background: rgba(17,17,29,.85); border: 1px solid var(--card-border); box-shadow: 0 30px 80px -20px rgba(124,58,237,.45); overflow: hidden; transform: rotate(1.5deg); transition: transform .4s; }
+  .code-card:hover { transform: rotate(0) scale(1.02); }
+  .code-top { display: flex; gap: 7px; padding: 14px 16px; border-bottom: 1px solid var(--card-border); align-items: center; }
+  .code-top i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .code-top span { margin-left: 10px; font-size: 12px; color: var(--muted); }
+  pre { padding: 20px; font-size: 13.5px; line-height: 1.75; overflow-x: auto; }
+  .k { color: #c084fc; } .s { color: #67e8f9; } .f { color: #f9a8d4; } .c { color: #6b7280; } .n { color: #fbbf24; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .code-card { transform: none; } }
+  @media (max-width: 480px) { pre { font-size: 12px; padding: 16px; } .btn { padding: 11px 16px; font-size: 14px; } .badge { font-size: 12px; } .feature .body, .card { padding: 22px; } }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: -10px; }
+  .stat { padding: 22px; border-radius: 16px; background: var(--card); border: 1px solid var(--card-border); text-align: center; }
+  .stat b { display: block; font-size: 34px; font-weight: 800; letter-spacing: -.03em; }
+  .stat span { color: var(--muted); font-size: 13.5px; }
+  @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* sections */
+  section { padding: 90px 0 20px; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; color: var(--violet); font-size: 13px; letter-spacing: .08em; }
+  h2 { font-size: clamp(30px, 4.5vw, 42px); letter-spacing: -.03em; font-weight: 800; margin: 6px 0 34px; }
+  .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 28px; transition: transform .3s, border-color .3s; }
+  .card:hover { border-color: rgba(139,92,246,.45); }
+
+  /* about */
+  .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+  .about p { color: var(--muted); margin-bottom: 14px; font-size: 16px; }
+  .about p strong { color: var(--text); }
+  .facts { display: grid; gap: 12px; }
+  .fact { display: flex; gap: 14px; align-items: center; }
+  .fact .ic { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 12px; background: rgba(139,92,246,.12); color: var(--violet); font-size: 18px; }
+  .fact small { color: var(--muted); display: block; font-size: 12.5px; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+
+  /* featured project */
+  .feature { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; padding: 0; overflow: hidden; border-radius: 24px; position: relative; }
+  .feature::before { content: ""; position: absolute; inset: 0; border-radius: 24px; padding: 1px; background: var(--grad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+  .feature .shot { background: linear-gradient(135deg, rgba(139,92,246,.25), rgba(34,211,238,.15)); padding: 28px; display: flex; align-items: center; }
+  .feature .shot img { width: 100%; border-radius: 12px; box-shadow: 0 20px 50px -15px rgba(0,0,0,.7); transition: transform .5s; }
+  .feature:hover .shot img { transform: scale(1.03) rotate(-.5deg); }
+  .feature .body { padding: 32px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--grad); color: #fff; letter-spacing: .03em; }
+  .feature h3 { font-size: 28px; letter-spacing: -.02em; margin: 14px 0 8px; }
+  .feature p { color: var(--muted); }
+  .feature ul { list-style: none; margin: 18px 0; display: grid; gap: 9px; }
+  .feature li { padding-left: 28px; position: relative; color: #d4d4e0; font-size: 15px; }
+  .feature li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 19px; height: 19px; border-radius: 6px; background: rgba(34,211,238,.15); color: var(--cyan); font-size: 12px; display: grid; place-items: center; font-weight: 700; margin-top: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 12.5px; padding: 5px 11px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--card-border); color: #d4d4e0; }
+  .note { font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+  @media (max-width: 860px) { .feature { grid-template-columns: 1fr; } }
+
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+  .proj { display: flex; flex-direction: column; }
+  .proj:hover { transform: translateY(-6px); }
+  .proj .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; margin-bottom: 18px; }
+  .proj h4 { font-size: 18px; margin-bottom: 8px; }
+  .proj p { color: var(--muted); font-size: 14.5px; flex: 1; margin-bottom: 16px; }
+  @media (max-width: 860px) { .proj-grid { grid-template-columns: 1fr; } }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skills h4 { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-bottom: 16px; }
+  .skills h4 .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(139,92,246,.14); font-size: 16px; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; padding: 7px 13px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--card-border); margin: 0 6px 8px 0; transition: .2s; }
+  .pill:hover { border-color: var(--cyan); color: #fff; }
+  .pill i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+  @media (max-width: 860px) { .skills { grid-template-columns: 1fr; } }
+
+  /* timeline */
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--violet), var(--cyan), transparent); }
+  .t-item { position: relative; margin-bottom: 18px; }
+  .t-item::before { content: ""; position: absolute; left: -31px; top: 30px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--violet); }
+  .t-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+  .t-head h4 { font-size: 18px; }
+  .when { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: var(--cyan); padding: 3px 10px; border-radius: 8px; background: rgba(34,211,238,.08); }
+  .t-item .org { color: var(--violet); font-weight: 600; font-size: 14.5px; margin: 2px 0 8px; }
+  .t-item p { color: var(--muted); font-size: 15px; }
+  .kind { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin-left: 8px; }
+
+  /* contact */
+  .contact { text-align: center; padding: 56px 28px; border-radius: 28px; background: radial-gradient(ellipse at top, rgba(139,92,246,.28), transparent 65%), var(--card); border: 1px solid var(--card-border); }
+  .contact h2 { margin-bottom: 12px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto; }
+  .contact .btns { justify-content: center; }
+  footer { text-align: center; color: var(--muted); font-size: 13.5px; padding: 50px 0 40px; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .blob, .caret, .dot { animation: none; } }
 </style>
 </head>
 <body>
+<div class="grid-bg"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
 <nav>
-  <div class="wrap">
-    <strong>Ashley Shirin G</strong>
+  <div class="bar">
+    <a href="#top" class="logo">Ashley<span>.</span></a>
     <div class="links">
-      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#journey">Journey</a>
     </div>
+    <a class="cta" href="#contact">Hire me</a>
   </div>
 </nav>
 
-<main class="wrap">
-  <header>
-    <h1>Hi, I'm Ashley.</h1>
-    <p class="role">Python Full Stack Developer</p>
-    <p class="intro">I build and deploy full-stack web apps with React, Python (FastAPI, Django, Flask) and MySQL. My latest project, LifeXash, is a live productivity app with authentication, a tested REST API and an installable mobile experience. I'm looking for an entry-level Software Engineer or Full Stack Developer role in Bangalore or remote.</p>
-    <div class="buttons">
-      <a class="btn primary" href="https://lifexash-web.onrender.com" target="_blank" rel="noopener">Try LifeXash</a>
-      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
-      <a class="btn" href="https://github.com/ashley-shirin" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/ashleyshirin9110617652" target="_blank" rel="noopener">LinkedIn</a>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span>Open to entry-level roles · Bangalore / Remote</span>
+        <h1>Hi, I'm <span class="grad-text">Ashley Shirin</span></h1>
+        <div class="typed">I build <span class="word" id="typed"></span><span class="caret"></span></div>
+        <p class="intro">A Python Full Stack Developer who designs, builds, tests and deploys complete web apps with React, FastAPI, Django and MySQL.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">View my work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Download resume</a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/ashley-shirin" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/ashleyshirin9110617652" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+          <a href="mailto:ashleyshirin16@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="code-card reveal">
+        <div class="code-top"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="mono">ashley.py</span></div>
+<pre class="mono"><span class="k">class</span> <span class="f">Developer</span>:
+    name   = <span class="s">"Ashley Shirin G"</span>
+    role   = <span class="s">"Python Full Stack"</span>
+    based  = <span class="s">"Bangalore, India"</span>
+    stack  = [<span class="s">"React"</span>, <span class="s">"FastAPI"</span>,
+              <span class="s">"Django"</span>, <span class="s">"MySQL"</span>]
+    shipped = <span class="s">"LifeXash"</span>  <span class="c"># live ✔</span>
+
+    <span class="k">def</span> <span class="f">motto</span>(self):
+        <span class="k">return</span> <span class="s">"Build it, test it, ship it."</span></pre>
+      </div>
     </div>
-  </header>
+  </section>
+
+  <div class="wrap stats reveal">
+    <div class="stat"><b class="grad-text" data-count="26">0</b><span>REST APIs built</span></div>
+    <div class="stat"><b class="grad-text" data-count="30" data-suffix="+">0</b><span>Automated tests</span></div>
+    <div class="stat"><b class="grad-text" data-count="96" data-suffix="%">0</b><span>ML model accuracy</span></div>
+    <div class="stat"><b class="grad-text" data-count="4">0</b><span>Projects built</span></div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow reveal">01 · ABOUT ME</div>
+      <h2 class="reveal">Turning ideas into <span class="grad-text">working software</span></h2>
+      <div class="about">
+        <div class="card reveal">
+          <p>I'm a <strong>Computer Science Engineering graduate</strong> from VTU who loves building things people can actually use. After a 10-month Python Full Stack Development course, I designed and shipped <strong>LifeXash</strong>, a complete productivity app with a tested API, secure login and a live deployment.</p>
+          <p>I enjoy the whole journey: designing the database, writing clean APIs, building the React interface, and hunting down bugs. Before tech, I worked in background verification at Startek, which taught me accuracy and attention to detail.</p>
+          <p>I'm looking for an <strong>entry-level Software Engineer or Full Stack Developer</strong> role where I can learn fast and contribute from day one.</p>
+        </div>
+        <div class="card facts reveal">
+          <div class="fact"><div class="ic">🎓</div><div><b>B.E., Computer Science and Engineering</b><small>Dr. T. Thimmaiah Institute of Technology (VTU)</small></div></div>
+          <div class="fact"><div class="ic">💻</div><div><b>Python Full Stack Development</b><small>Be Practical Tech Solutions · 10-month course</small></div></div>
+          <div class="fact"><div class="ic">🚀</div><div><b>Shipped LifeXash</b><small>React + FastAPI + MySQL, live on Render</small></div></div>
+          <div class="fact"><div class="ic">📍</div><div><b>Bangalore, India</b><small>Open to on-site, hybrid or remote</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="projects">
-    <h2>Projects</h2>
+    <div class="wrap">
+      <div class="eyebrow reveal">02 · PROJECTS</div>
+      <h2 class="reveal">Things I've <span class="grad-text">built</span></h2>
 
-    <article class="card featured">
-      <span class="tag">Featured</span>
-      <h3>LifeXash: personal productivity app</h3>
-      <p>A daily planner, tagged notes and a mood journal in one app, with a dashboard that shows today's completion score, a productivity streak and a 7-day mood trend.</p>
-      <img class="shot" src="https://raw.githubusercontent.com/ashley-shirin/lifexash/main/docs/screenshots/dashboard.png" alt="LifeXash dashboard showing today's score, streak and weekly chart" loading="lazy">
-      <ul>
-        <li>26 REST API endpoints in FastAPI, organised into routers, services and models.</li>
-        <li>JWT login with bcrypt password hashing. Every query is scoped to the logged-in user, and other users' records return 404.</li>
-        <li>6 MySQL tables with SQLAlchemy 2.0 and Alembic migrations. Deployed on Render with a TiDB Cloud database over verified TLS.</li>
-        <li>30+ pytest unit tests and step-by-step test checklists for auth, access control and time zones.</li>
-        <li>Found and fixed a SQL bug where the dashboard showed 1 completed task instead of 3.</li>
-        <li>Installable PWA with an offline banner and update prompt, tested on an Android phone.</li>
-      </ul>
-      <div class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">MySQL</span><span class="chip">SQLAlchemy</span><span class="chip">JWT</span><span class="chip">pytest</span><span class="chip">Render</span><span class="chip">PWA</span></div>
-      <div class="buttons">
-        <a class="btn primary" href="https://lifexash-web.onrender.com" target="_blank" rel="noopener">Live demo</a>
-        <a class="btn" href="https://github.com/ashley-shirin/lifexash" target="_blank" rel="noopener">Source code</a>
+      <article class="card feature reveal">
+        <div class="shot"><img src="https://raw.githubusercontent.com/ashley-shirin/lifexash/main/docs/screenshots/dashboard.png" alt="LifeXash dashboard showing today's score, streak and weekly chart" loading="lazy"></div>
+        <div class="body">
+          <span class="tag">FEATURED · LIVE</span>
+          <h3>LifeXash</h3>
+          <p>A personal productivity app that brings a daily planner, tagged notes and a mood journal together, with a dashboard for your daily score, streak and 7-day mood trend.</p>
+          <ul>
+            <li>26 REST APIs in FastAPI with a clean router, service and model structure</li>
+            <li>JWT login, bcrypt passwords, and each user sees only their own data</li>
+            <li>6 MySQL tables with SQLAlchemy and Alembic migrations</li>
+            <li>30+ pytest tests, plus a real SQL bug found and fixed</li>
+            <li>Installable mobile app (PWA) with an offline banner</li>
+          </ul>
+          <div class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">MySQL</span><span class="chip">SQLAlchemy</span><span class="chip">JWT</span><span class="chip">pytest</span><span class="chip">Render</span></div>
+          <div class="btns" style="margin-top:22px">
+            <a class="btn primary" href="https://lifexash-web.onrender.com" target="_blank" rel="noopener">Live demo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <a class="btn" href="https://github.com/ashley-shirin/lifexash" target="_blank" rel="noopener">Source code</a>
+          </div>
+          <p class="note">Free server: the first load can take about a minute to wake up.</p>
+        </div>
+      </article>
+
+      <div class="proj-grid">
+        <article class="card proj reveal">
+          <div class="ic" style="background:rgba(34,211,238,.12)">📋</div>
+          <h4>Job Application Tracker</h4>
+          <p>Track job applications from applied to interview, offer or rejected, with secure login and per-user data.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">MySQL</span></div>
+        </article>
+        <article class="card proj reveal">
+          <div class="ic" style="background:rgba(244,114,182,.12)">🧠</div>
+          <h4>Employee Stress Prediction</h4>
+          <p>Final-year ML project predicting stress levels from work and lifestyle data. Compared SVM and Logistic Regression, reaching 96% accuracy.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span></div>
+        </article>
+        <article class="card proj reveal">
+          <div class="ic" style="background:rgba(251,191,36,.12)">📦</div>
+          <h4>Stock Management System</h4>
+          <p>A web-based inventory tracker with stock updates, low-stock alerts and summary reports.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">SQL</span></div>
+        </article>
       </div>
-      <p style="font-size:13px;margin-top:12px">The demo runs on a free server, so the first load can take about a minute to wake up.</p>
-    </article>
-
-    <div class="grid">
-      <article class="card">
-        <h3>Job Application Tracker</h3>
-        <p>Tracks job applications from applied to interview, offer or rejected, with sign-up, login and per-user data.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">MySQL</span></div>
-      </article>
-      <article class="card">
-        <h3>Employee Stress Prediction</h3>
-        <p>Final-year ML project. Predicts stress levels from work hours, role and lifestyle features, comparing SVM, Logistic Regression and other classifiers. The best model reached 96% accuracy.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span></div>
-      </article>
-      <article class="card">
-        <h3>Stock Management System</h3>
-        <p>Web-based inventory tracker with item updates, low-stock alerts and summary reports.</p>
-        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">SQL</span></div>
-      </article>
     </div>
   </section>
 
   <section id="skills">
-    <h2>Skills</h2>
-    <dl class="skills">
-      <dt>Languages</dt><dd>Python, JavaScript, SQL, HTML5, CSS3</dd>
-      <dt>Frontend</dt><dd>React, Vite, React Router, Axios, Bootstrap, PWA</dd>
-      <dt>Backend</dt><dd>FastAPI, Django, Flask, REST APIs, SQLAlchemy, Alembic, JWT</dd>
-      <dt>Databases</dt><dd>MySQL, TiDB Cloud</dd>
-      <dt>Testing and deployment</dt><dd>pytest, Selenium, Git, GitHub, Render</dd>
-      <dt>Machine learning</dt><dd>Pandas, Scikit-learn, SVM, Logistic Regression</dd>
-    </dl>
+    <div class="wrap">
+      <div class="eyebrow reveal">03 · SKILLS</div>
+      <h2 class="reveal">My <span class="grad-text">toolkit</span></h2>
+      <div class="skills">
+        <div class="card reveal">
+          <h4><span class="ic">🎨</span>Frontend</h4>
+          <span class="pill"><i style="background:#61dafb"></i>React.js</span><span class="pill"><i style="background:#f7df1e"></i>JavaScript</span><span class="pill"><i style="background:#e34f26"></i>HTML5</span><span class="pill"><i style="background:#1572b6"></i>CSS3</span><span class="pill"><i style="background:#7952b3"></i>Bootstrap</span><span class="pill"><i style="background:#22d3ee"></i>PWA</span>
+        </div>
+        <div class="card reveal">
+          <h4><span class="ic">⚙️</span>Backend</h4>
+          <span class="pill"><i style="background:#3776ab"></i>Python</span><span class="pill"><i style="background:#009688"></i>FastAPI</span><span class="pill"><i style="background:#44b78b"></i>Django</span><span class="pill"><i style="background:#aaaaaa"></i>Flask</span><span class="pill"><i style="background:#d71f00"></i>SQLAlchemy</span><span class="pill"><i style="background:#8b5cf6"></i>REST APIs</span><span class="pill"><i style="background:#f472b6"></i>JWT</span>
+        </div>
+        <div class="card reveal">
+          <h4><span class="ic">🛠️</span>Data and Tools</h4>
+          <span class="pill"><i style="background:#4479a1"></i>MySQL</span><span class="pill"><i style="background:#f05032"></i>Git</span><span class="pill"><i style="background:#ffffff"></i>GitHub</span><span class="pill"><i style="background:#0a9edc"></i>pytest</span><span class="pill"><i style="background:#43b02a"></i>Selenium</span><span class="pill"><i style="background:#46e3b7"></i>Render</span><span class="pill"><i style="background:#150458"></i>Pandas</span><span class="pill"><i style="background:#f7931e"></i>Scikit-learn</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="experience">
-    <h2>Experience and education</h2>
-    <div class="card">
-      <div class="row"><h3>Python Full Stack Development Course</h3><span class="when">Mar 2025 – Mar 2026</span></div>
-      <p>Be Practical Tech Solutions, Bangalore. A 10-month hands-on course in Python, Django, Flask, React, JavaScript and MySQL, building full-stack apps with REST APIs, authentication and Git.</p>
-    </div>
-    <div class="card">
-      <div class="row"><h3>Process Executive</h3><span class="when">Oct 2023 – Jul 2024</span></div>
-      <p>Startek India. Verified employment, education and identity records for background screening, tracked cases and produced audit-ready reports.</p>
-    </div>
-    <div class="card">
-      <div class="row"><h3>Industrial Training, Software Testing</h3><span class="when">Aug 2022 – Sep 2022</span></div>
-      <p>Inventeron Technologies, Bengaluru. Software testing, including automated web testing with Selenium.</p>
-    </div>
-    <div class="card">
-      <div class="row"><h3>Industrial Training, Web Development</h3><span class="when">Jul 2022 – Aug 2022</span></div>
-      <p>AiROBOSOFT Products and Services, Bengaluru. Hands-on web development training.</p>
-    </div>
-    <div class="card">
-      <div class="row"><h3>B.E., Computer Science and Engineering</h3><span class="when">2020 – 2023</span></div>
-      <p>Dr. T. Thimmaiah Institute of Technology (VTU), KGF, lateral entry. CGPA 7.1 / 10.</p><p>Diploma in Computer Science and Engineering, School of Mines, Coromandel, KGF (2016 – 2019), 63%.</p>
+  <section id="journey">
+    <div class="wrap">
+      <div class="eyebrow reveal">04 · JOURNEY</div>
+      <h2 class="reveal">Experience and <span class="grad-text">education</span></h2>
+      <div class="timeline">
+        <div class="t-item card reveal">
+          <div class="t-head"><h4>Python Full Stack Development <span class="kind">Course</span></h4><span class="when">Mar 2025 – Mar 2026</span></div>
+          <div class="org">Be Practical Tech Solutions, Bangalore</div>
+          <p>10-month hands-on course in Python, Django, Flask, React, JavaScript and MySQL, building full-stack apps with REST APIs and authentication.</p>
+        </div>
+        <div class="t-item card reveal">
+          <div class="t-head"><h4>Process Executive <span class="kind">Work</span></h4><span class="when">Oct 2023 – Jul 2024</span></div>
+          <div class="org">Startek India, Bangalore</div>
+          <p>Verified employment, education and identity records for background checks, ensuring accuracy and compliance.</p>
+        </div>
+        <div class="t-item card reveal">
+          <div class="t-head"><h4>B.E., Computer Science and Engineering <span class="kind">Degree</span></h4><span class="when">2020 – 2023</span></div>
+          <div class="org">Dr. T. Thimmaiah Institute of Technology (VTU), KGF</div>
+          <p>Lateral entry · CGPA 7.1 / 10</p>
+        </div>
+        <div class="t-item card reveal">
+          <div class="t-head"><h4>Industrial Training: Software Testing and Web Development <span class="kind">Training</span></h4><span class="when">Jul 2022 – Sep 2022</span></div>
+          <div class="org">Inventeron Technologies and AiROBOSOFT, Bengaluru</div>
+          <p>Software testing with Selenium, and hands-on web development training.</p>
+        </div>
+        <div class="t-item card reveal">
+          <div class="t-head"><h4>Diploma, Computer Science and Engineering <span class="kind">Diploma</span></h4><span class="when">2016 – 2019</span></div>
+          <div class="org">School of Mines, Coromandel, KGF</div>
+          <p>63%</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>I'd love to hear about entry-level developer roles.</p>
-    <div class="buttons">
-      <a class="btn primary" href="mailto:ashleyshirin16@gmail.com">ashleyshirin16@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/ashleyshirin9110617652" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/ashley-shirin" target="_blank" rel="noopener">GitHub</a>
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="eyebrow">05 · CONTACT</div>
+        <h2>Let's <span class="grad-text">work together</span></h2>
+        <p>I'm actively looking for entry-level developer roles. If you have an opening or just want to chat, my inbox is always open.</p>
+        <div class="btns">
+          <a class="btn primary" href="mailto:ashleyshirin16@gmail.com">Say hello
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn" href="https://www.linkedin.com/in/ashleyshirin9110617652" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/ashley-shirin" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">© 2026 Ashley Shirin G · Bangalore, India</div></footer>
+<footer>Designed and built by Ashley Shirin G · © 2026</footer>
+
+<script>
+  // typing effect
+  const words = ["full-stack web apps.", "REST APIs with FastAPI.", "React interfaces.", "things that ship."];
+  const el = document.getElementById("typed");
+  let w = 0, i = 0, del = false;
+  function tick() {
+    const word = words[w];
+    el.textContent = word.slice(0, i);
+    if (!del && i < word.length) i++;
+    else if (del && i > 0) i--;
+    else if (!del) { del = true; return setTimeout(tick, 1400); }
+    else { del = false; w = (w + 1) % words.length; }
+    setTimeout(tick, del ? 40 : 75);
+  }
+  tick();
+
+  // reveal on scroll + count up
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("show");
+      e.target.querySelectorAll("[data-count]").forEach(n => {
+        const end = +n.dataset.count, suf = n.dataset.suffix || "";
+        let cur = 0; const step = Math.max(1, Math.ceil(end / 40));
+        const t = setInterval(() => { cur = Math.min(end, cur + step); n.textContent = cur + suf; if (cur === end) clearInterval(t); }, 30);
+      });
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(r => io.observe(r));
+</script>
 </body>
 </html>
